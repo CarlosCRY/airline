@@ -47,4 +47,12 @@ public class Airline {
                                             .filter(passenger -> passenger.getNif().equals(tNif))
                                             .map(passenger -> passenger.getLuggages().add(nLuggage));
     }
+
+    public List<Flight> findFlights (String tNif) {
+        List<Flight> listFlights = new List<Flight>();
+
+        flights.forEach();
+
+
+    }
 }
