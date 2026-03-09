@@ -44,16 +44,24 @@ public class Airline {
     }
 
     public void giveLuggage (int flightN, String tNif, Luggage nLuggage) {
-        flights.get(flightN).getPassengers().stream()
-                                            .filter(passenger -> passenger.getNif().equals(tNif))
-                                            .forEach(passenger -> passenger.getLuggages().add(nLuggage));
+        if (flights.get(flightN) == null) {
+            System.out.println("El número de vuelo dado no existe.");
+        } else {
+            flights.get(flightN).getPassengers().stream()
+                    .filter(passenger -> passenger.getNif().equals(tNif))
+                    .findFirst()
+                    .ifPresentOrElse(
+                            passenger -> passenger.getLuggages().add(nLuggage),
+                            () -> System.out.println("No se encontró el NIF dado."));
+        }
     }
 
     public List<Flight> findFlights (String tNif) {
         List<Flight> listFlights = new ArrayList<>();
 
-        flights.forEach((key, flight) ->
-        {if (flight.getPassengers().contains(tNif)) listFlights.add(flight);});
+        flights.forEach((key, flight) -> flight.getPassengers().forEach(
+                                passenger -> {if (passenger.getNif().equals(tNif)) listFlights.add(flight);})
+        );
 
         return listFlights;
     }

@@ -13,5 +13,5 @@ public class Flight {
     private String origin;
     private String destination;
     private LocalDate flightDate;
-    private TreeSet<Passenger> passengers = new TreeSet<>(new ComparatorPassSeat());
+    private TreeSet<Passenger> passengers;
 }
