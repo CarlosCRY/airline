@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
@@ -45,14 +46,15 @@ public class Airline {
     public void giveLuggage (int flightN, String tNif, Luggage nLuggage) {
         flights.get(flightN).getPassengers().stream()
                                             .filter(passenger -> passenger.getNif().equals(tNif))
-                                            .map(passenger -> passenger.getLuggages().add(nLuggage));
+                                            .forEach(passenger -> passenger.getLuggages().add(nLuggage));
     }
 
     public List<Flight> findFlights (String tNif) {
-        List<Flight> listFlights = new List<Flight>();
+        List<Flight> listFlights = new ArrayList<>();
 
-        flights.forEach();
+        flights.forEach((key, flight) ->
+        {if (flight.getPassengers().contains(tNif)) listFlights.add(flight);});
 
-
+        return listFlights;
     }
 }

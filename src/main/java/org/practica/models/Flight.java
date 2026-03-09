@@ -3,7 +3,7 @@ package org.practica.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.TreeSet;
 
 @Data
@@ -12,6 +12,6 @@ public class Flight {
     private int flightNumber;
     private String origin;
     private String destination;
-    private Date flightDate;
-    private TreeSet<Passenger> passengers;
+    private LocalDate flightDate;
+    private TreeSet<Passenger> passengers = new TreeSet<>(new ComparatorPassSeat());
 }
